@@ -3,6 +3,7 @@ import Head from "next/head";
 import { api } from "@/utils/api";
 import Todo from "@/components/todo";
 import CreateTodo from "@/components/create-todo";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
   const { data } = api.todo.findAll.useQuery();
@@ -19,6 +20,9 @@ export default function Home() {
           {data?.map((todo) => <Todo key={todo.id} todo={todo} />)}
         </div>
         <CreateTodo />
+        <div className="fixed right-4 top-4">
+          <ThemeToggle />
+        </div>
       </main>
     </>
   );

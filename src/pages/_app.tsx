@@ -4,12 +4,20 @@ import { type AppType } from "next/app";
 import { api } from "@/utils/api";
 
 import "@/styles/globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <main className={GeistSans.className}>
-      <Component {...pageProps} />
-    </main>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <main className={GeistSans.className}>
+        <Component {...pageProps} />
+      </main>
+    </ThemeProvider>
   );
 };
 
