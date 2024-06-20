@@ -32,7 +32,7 @@ export const todoRouter = createTRPCRouter({
     }),
 
   findAll: publicProcedure.query(({ ctx }) => {
-    return ctx.db.post.findMany({
+    return ctx.db.todo.findMany({
       orderBy: { createdAt: "desc" },
     });
   }),

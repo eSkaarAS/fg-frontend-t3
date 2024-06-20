@@ -18,7 +18,7 @@ import { api } from "@/utils/api";
 
 const FormSchema = z.object({
   description: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Description must be at least 2 characters.",
   }),
 });
 
@@ -40,6 +40,7 @@ export default function CreateTodo() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     createTodo(data);
+    form.reset();
   }
 
   return (

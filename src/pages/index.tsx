@@ -1,10 +1,11 @@
 import Head from "next/head";
-import Link from "next/link";
 
 import { api } from "@/utils/api";
+import Todo from "@/components/todo";
+import CreateTodo from "@/components/create-todo";
 
 export default function Home() {
-  const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const { data } = api.todo.findAll.useQuery();
 
   return (
     <>
@@ -14,7 +15,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col bg-green-200">
-        <h1>tester</h1>
+        {data?.map((todo) => <Todo key={todo.id} todo={todo} />)}
+        <CreateTodo />
       </main>
     </>
   );
