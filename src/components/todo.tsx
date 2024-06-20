@@ -3,9 +3,16 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { api } from "@/utils/api";
 import { type Todo } from "@prisma/client";
+import { Button } from "./ui/button";
+import { Trash2 } from "lucide-react";
 
 export default function Todo({ todo }: { todo: Todo }) {
   const utils = api.useUtils();
+  const { mutate: deleteTodo } = api.todo.delete.useMutation({
+    onSuccess: () => {
+      void utils.todo.findAll.invalidate();
+    },
+  });
   const { mutate: toggleTodo } = api.todo.toggle.useMutation({
     onSuccess: () => {
       void utils.todo.findAll.invalidate();
@@ -13,7 +20,7 @@ export default function Todo({ todo }: { todo: Todo }) {
   });
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex w-full items-center gap-2">
       <Checkbox
         id={todo.id}
         defaultChecked={todo.isCompleted}
@@ -31,6 +38,14 @@ export default function Todo({ todo }: { todo: Todo }) {
       >
         {todo.description}
       </label>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="ml-auto"
+        onClick={() => deleteTodo({ id: todo.id })}
+      >
+        <Trash2 className="text-red-500" />
+      </Button>
     </div>
   );
 }
