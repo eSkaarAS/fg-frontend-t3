@@ -27,7 +27,7 @@ export default function Todo({ todo }: { todo: Todo }) {
       />
       <label
         htmlFor={todo.id}
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${todo.isCompleted ? "line-through opacity-50" : ""}`}
       >
         {todo.description}
       </label>
