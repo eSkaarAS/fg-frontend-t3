@@ -6,7 +6,7 @@ import { type Todo } from "@prisma/client";
 import { Button } from "./ui/button";
 import { Trash2 } from "lucide-react";
 
-export default function Todo({ todo }: { todo: Todo }) {
+export default function TodoComponent({ todo }: { todo: Todo }) {
   const utils = api.useUtils();
   const { mutate: deleteTodo } = api.todo.delete.useMutation({
     onSuccess: () => {

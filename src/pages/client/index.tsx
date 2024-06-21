@@ -1,10 +1,8 @@
-import Head from "next/head";
-
 import CreateTodo from "@/components/create-todo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import TodosClient from "@/components/todosClient";
-
-export default function Home() {
+import Head from "next/head";
+export default function Page() {
   return (
     <>
       <Head>
